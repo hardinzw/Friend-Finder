@@ -1,0 +1,22 @@
+{
+  "name": "friend-finder",
+  "version": "1.0.0",
+  "description": "app to find your most compatible companion",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hardinzw/Friend-Finder.git"
+  },
+  "author": "zh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hardinzw/Friend-Finder/issues"
+  },
+  "homepage": "https://github.com/hardinzw/Friend-Finder#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
