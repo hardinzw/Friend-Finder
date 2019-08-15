@@ -1,37 +1,43 @@
-var path = require("path");
+var friendList = require("../data/friends");
 
 module.exports = function (app) {
-    //Route to survey
+    //Get list of available friends
     app.get("/api/friends", function (req, res) {
-        res.sendFile(path.join(__dirname, "../public/survey.html"));
+        res.json(friendList);
     })
-
+    //Post request used in survey
     app.post("/api/friends", function (req, res) {
-        var newFriend = req.body;
-        var newScore = 0;
-        var total = 0;
-        var match = {
-            name: "",
-            photo: "",
-            difference: 10000
-        }
+
+        //reveice input details (name, photo, scores)
+        var input = req.body;
+
+        //parse for scores
+        for (var i = 0; i < input.scores.length; i++) {
+            input.scores[i] = parseInt(input.scores[i]);
+        };
+
+        var bestIndex = 0;
+        var minimumDif = 40;
 
         for (var i = 0; i < friendList.length; i++) {
-            total = 0;
+            var totalDif = 0;
+            for(var j = 0; j < friendList[i].scores.length; j++) {
+                var difference = Math.abs(input.scores[j] - friendList[j].scores[j]);
+                totalDif += difference;
+            }
 
-            for (var j = 0; j < friendList[i].preferences.length; j++) {
-                total += Math.abs(friendList[i].preferences[j] - newFriend.preferences[j]);
-
-                if (total <= match.difference) {
-                    match.name = friendList[i].name,
-                        match.photo = friendList[i].photo,
-                        match.difference = total
-                }
+            if(totalDif < minimumDif) {
+                bestIndex = i;
+                miniumumDif = totalDif;
             };
         };
 
-        friendList.push(newFriend);
-        res.json(match);
-        console.log(match);
+        friendList.push(input);
+        res.json(friendList[bestIndex]);
     });
 };
+
+
+
+
+
