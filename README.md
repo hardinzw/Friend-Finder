@@ -13,3 +13,11 @@ The survey asks for your name and an image of yourself. Following is a set of 10
 Friend Finder Pro will take the results from your survey and identify the companion who would be the best match as your friend.
 
 ![img](app/public/images/results.png)
+
+## Friend Finder Pro was created using the following technologies:
+* Javascript
+* nodeJS
+* npm packages:
+    * express
+    * path
+    * body-parser
