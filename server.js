@@ -5,7 +5,7 @@ var path = require("path")
 
 var app = express();
 
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3000;
 
 // Set up to parse incoming requests
 app.use(bodyParser.json());
