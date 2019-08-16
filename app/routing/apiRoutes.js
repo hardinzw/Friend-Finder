@@ -1,40 +1,42 @@
 var friendList = require("../data/friends");
 
 module.exports = function (app) {
-    //Get list of available friends
-    app.get("/api/friends", function (req, res) {
-        res.json(friendList);
-    })
-    //Post request used in survey
-    app.post("/api/friends", function (req, res) {
+	app.get("/api/friends", function (req, res) {
+		res.json(friendList);
+	});
 
-        //reveice input details (name, photo, scores)
-        var input = req.body;
+	app.post("/api/friends", function (req, res) {
+		var surveyResults = req.body.scores;
+		for (var i = 0; i < surveyResults.length; i++) {
+			surveyResults[i] = parseInt(surveyResults[i]);
+		};
 
-        //parse for scores
-        for (var i = 0; i < input.scores.length; i++) {
-            input.scores[i] = parseInt(input.scores[i]);
-        };
+		var bestDifference = 999999;
+		var bestMatch = 0;
 
-        var bestIndex = 0;
-        var minimumDif = 40;
+		for (i = 0; i < friendList.length; i++) {
 
-        for (var i = 0; i < friendList.length; i++) {
-            var totalDif = 0;
-            for(var j = 0; j < friendList[i].scores.length; j++) {
-                var difference = Math.abs(input.scores[j] - friendList[j].scores[j]);
-                totalDif += difference;
-            }
+			var compareDifference = difference(surveyResults, friendList[i].scores);
+			console.log("difference between", surveyResults, "and", friendList[i].name, friendList[i].scores, "=", compareDifference);
 
-            if(totalDif < minimumDif) {
-                bestIndex = i;
-                miniumumDif = totalDif;
-            };
-        };
+			if (compareDifference < bestDifference) {
+				bestDifference = compareDifference;
+				bestMatch = i;
+			};
+		};
 
-        friendList.push(input);
-        res.json(friendList[bestIndex]);
-    });
+		function difference(array1, array2) {
+			var differenceAmount = 0;
+
+			for (var i = 0; i < array1.length; i++) {
+				differenceAmount += Math.abs(array1[i] - array2[i]);
+			}
+			return differenceAmount;
+		};
+
+		// send the bestMatch back to the html page in response to the post
+		res.send(friendList[bestMatch]);
+	});
 };
 
 

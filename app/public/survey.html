@@ -6,23 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
     <div class="container content">
         <h1>Survey</h1>
-        <p>Take a quick survey to find your perfect match! These questions are answered by the numbers 1 through 5. If
-            you really, really disagree with the statement, your answer would be 1. If you find a statement to hit
-            extremely close to home, put in a 5.</p>
+        <p>Answer the survey below to find your perfect match!</p>
         <form>
             <div class="form-group">
                 <input id="name" type="text" class="form-control" placeholder="Name (Required)">
             </div>
+
             <div class="form-group">
                 <input id="photo" type="text" class="form-control" placeholder="Link to Profile Photo (Required)">
             </div>
+
             <div class="form-group">
-                <label for="question1">I like to do janitorial work.</label>
+                <label for="question1">A hotdog is considered a sandwhich.</label>
                 <select class="form-control" id="question1">
                     <option value="empty"></option>
                     <option value="1">1 (Strongly Disagree)</option>
@@ -32,8 +36,9 @@
                     <option value="5">5 (Strongly Agree)</option>
                 </select>
             </div>
+
             <div class="form-group">
-                <label for="question2">I have some bird-like features (or so I've been told).</label>
+                <label for="question2">I prefer my chocolate chip cookies to be soft and gooey</label>
                 <select class="form-control" id="question2">
                     <option value="empty"></option>
                     <option value="1">1 (Strongly Disagree)</option>
@@ -43,6 +48,7 @@
                     <option value="5">5 (Strongly Agree)</option>
                 </select>
             </div>
+
             <div class="form-group">
                 <label for="question3">I think very highly of myself.</label>
                 <select class="form-control" id="question3">
@@ -54,8 +60,9 @@
                     <option value="5">5 (Strongly Agree)</option>
                 </select>
             </div>
+
             <div class="form-group">
-                <label for="question4">I enjoy martial arts.</label>
+                <label for="question4">I would prefer to be a ninja full-time.</label>
                 <select class="form-control" id="question4">
                     <option value="empty"></option>
                     <option value="1">1 (Strongly Disagree)</option>
@@ -65,8 +72,9 @@
                     <option value="5">5 (Strongly Agree)</option>
                 </select>
             </div>
+
             <div class="form-group">
-                <label for="question5">I read as a hobby.</label>
+                <label for="question5">I enjoy cosplay at comic conventions.</label>
                 <select class="form-control" id="question5">
                     <option value="empty"></option>
                     <option value="1">1 (Strongly Disagree)</option>
@@ -76,8 +84,9 @@
                     <option value="5">5 (Strongly Agree)</option>
                 </select>
             </div>
+
             <div class="form-group">
-                <label for="question6">I am God's gift to the opposite sex.</label>
+                <label for="question6">I am God's gift to mankind.</label>
                 <select class="form-control" id="question6">
                     <option value="empty"></option>
                     <option value="1">1 (Strongly Disagree)</option>
@@ -87,8 +96,9 @@
                     <option value="5">5 (Strongly Agree)</option>
                 </select>
             </div>
+
             <div class="form-group">
-                <label for="question7">I don't so well with the opposite sex.</label>
+                <label for="question7">I enjoy to travel.</label>
                 <select class="form-control" id="question7">
                     <option value="empty"></option>
                     <option value="1">1 (Strongly Disagree)</option>
@@ -98,6 +108,7 @@
                     <option value="5">5 (Strongly Agree)</option>
                 </select>
             </div>
+
             <div class="form-group">
                 <label for="question8">I am good with money.</label>
                 <select class="form-control" id="question8">
@@ -109,6 +120,7 @@
                     <option value="5">5 Strongly Agree)</option>
                 </select>
             </div>
+
             <div class="form-group">
                 <label for="question9">I work out at the gym often.</label>
                 <select class="form-control" id="question9">
@@ -120,6 +132,7 @@
                     <option value="5">5 (Strongly Agree)</option>
                 </select>
             </div>
+
             <div class="form-group">
                 <label for="question10">I consider myself aggressive.</label>
                 <select class="form-control" id="question10">
@@ -132,9 +145,8 @@
                 </select>
             </div>
         </form>
-        <div class="text-center">
-            <button id="submitBtn" type="submit" class="btn btn-success btn-lg">Submit</button>
-        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block" id="submitBtn"><i class="fa fa-check-circle" aria-hidden="true"></i> Submit</button>
 
         <!-- Modal after survey completion -->
         <div id="bestFriendModal" class="modal fade" role="dialog">
@@ -146,7 +158,7 @@
                     </div>
                     <div class="modal-body">
                         <h2 id="bestFriend"></h2>
-                        <img id="bestFriendPhoto" src="#">
+                        <img id="bestFriendPhoto" class="img-responsive" src="#">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -156,17 +168,15 @@
         </div>
     </div>
 
+    <br>
+
     <footer>
         <div class="container">
-            <a href="/api/friends">Discover Friends in Philly API</a>
+            <a href="/api/friends">API Friend's List</a>
             <span>|</span>
-            <a href="https://github.com/yoonslee/FriendFinder">GitHub Repo</a>
+            <a href="https://github.com/hardinzw/Friend-Finder.git">GitHub Repo</a>
         </div>
     </footer>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 
 </html>
@@ -181,10 +191,11 @@
         } else if ($("#question1").val() === "empty" || $("#question2").val() === "empty" || $("#question3").val() === "empty" || $("#question4").val() === "empty" || $("#question5").val() === "empty" || $("#question6").val() === "empty" || $("#question7").val() === "empty" || $("#question8").val() === "empty" || $("#question9").val() === "empty" || $("#question10").val() === "empty") {
             valid = false;
         }
+
         if (valid === true) {
             var newUser = {
-                name: $("#name").val().trim(),
-                photo: $("#photo").val().trim(),
+                name: $("#name").val(),
+                photo: $("#photo").val(),
                 scores: [
                     $("#question1").val(),
                     $("#question2").val(),
